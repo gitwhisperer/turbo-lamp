@@ -24,4 +24,13 @@ To get started with Turbo Lamp, follow these simple steps:
 
 1. **Clone the Repository:**
    ```bash
-   git clone https://github.com/your-username/turbo-lamp.git
+   git clone https://github.com/GitWhisperer/turbo-lamp.git
+
+2. **Install Dependencies:**
+   ```bash
+   cd turbo-lamp
+   npm install
+
+3. **Run:**
+   ```bash
+   npm run
