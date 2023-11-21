@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Turbo Lamp Login</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #1e1e1e;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            color: #fff;
+        }
+
+        .login-container {
+            background-color: #2a2a2a;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+            width: 300px;
+            text-align: center;
+        }
+
+        h2 {
+            color: #8a57d9;
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin: 15px 0 5px;
+            color: #bbb;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            box-sizing: border-box;
+            border: 1px solid #444;
+            border-radius: 4px;
+            font-size: 14px;
+            color: #bbb; /* Updated to white */
+            background-color: #333;
+        }
+
+        .password-container {
+            position: relative;
+        }
+
+        .password-icon {
+            position: absolute;
+            top: 50%;
+            right: 10px;
+            transform: translateY(-50%);
+            cursor: pointer;
+            color: #777;
+        }
+
+        button {
+            background-color: #8a57d9;
+            color: #fff;
+            padding: 12px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #693bb3;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="login-container">
+        <h2>Turbo Lamp Login</h2>
+        <form action="your-login-endpoint" method="post">
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required>
+
+            <label for="password">Password:</label>
+            <div class="password-container">
+                <input type="password" id="password" name="password" required>
+                <i class="password-icon fas fa-eye" id="show-password"></i>
+            </div>
+
+            <button type="submit">Login</button>
+        </form>
+    </div>
+    <script>
+        // JavaScript to toggle password visibility
+        const passwordInput = document.getElementById('password');
+        const showPasswordIcon = document.getElementById('show-password');
+
+        showPasswordIcon.addEventListener('click', function () {
+            const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+            passwordInput.setAttribute('type', type);
+            showPasswordIcon.classList.toggle('fa-eye-slash');
+        });
+    </script>
+</body>
+
+</html>
+</html>
