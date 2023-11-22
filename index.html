@@ -2,113 +2,228 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Turbo Lamp Login</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #1e1e1e;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
-            color: #fff;
-        }
+  <meta charset="UTF-8">
+  <title>Interactive Login Form with Moving Circle Background</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Montserrat', sans-serif;
+    }
 
-        .login-container {
-            background-color: #2a2a2a;
-            padding: 30px;
-            border-radius: 8px;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
-            width: 300px;
-            text-align: center;
-        }
+    .wrapper {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      width: 100%;
+      overflow: hidden;
+    }
 
-        h2 {
-            color: #8a57d9;
-            margin-bottom: 20px;
-        }
+    .background {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image: url('https://svgur.com/i/100c.svg'); 
+        background-size: cover;
+        background-position: center;
+        filter: blur(5px);
+      }
+      
+    .interactive-circle {
+      position: absolute;
+      background-color: rgba(255, 255, 255, 0.3);
+      width: 350px;
+      height: 350px;
+      border-radius: 50%;
+      pointer-events: none;   
+      filter: blur(180px);
+    
+    }
 
-        label {
-            display: block;
-            margin: 15px 0 5px;
-            color: #bbb;
-        }
+    .login-box {
+      position: relative;
+      z-index: 1;
+      width: 400px;
+      height: 450px;
+      background: transparent;
+      border-radius: 15px;
+      border: 2px solid rgba(255, 255, 255, 0.5);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      backdrop-filter: blur(15px);
+    }
 
-        input {
-            width: 100%;
-            padding: 10px;
-            margin-bottom: 15px;
-            box-sizing: border-box;
-            border: 1px solid #444;
-            border-radius: 4px;
-            font-size: 14px;
-            color: #bbb; /* Updated to white */
-            background-color: #333;
-        }
+    h2 {
+      font-size: 2em;
+      color: #fff;
+      text-align: center;
+    }
 
-        .password-container {
-            position: relative;
-        }
+    .input-box {
+      position: relative;
+      width: 310px;
+      margin: 30px 0;
+      border-bottom: 1px solid #fff;
+    }
 
-        .password-icon {
-            position: absolute;
-            top: 50%;
-            right: 10px;
-            transform: translateY(-50%);
-            cursor: pointer;
-            color: #777;
-        }
+    .input-box label {
+      position: absolute;
+      top: 50%;
+      left: 5px;
+      transform: translateY(-50%);
+      font-size: 1em;
+      color: #fff;
+      pointer-events: none;
+      transition: 0.5s;
+    }
 
-        button {
-            background-color: #8a57d9;
-            color: #fff;
-            padding: 12px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            width: 100%;
-            font-size: 16px;
-        }
+    .input-box input:focus~label,
+    .input-box input:valid~label {
+      top: -5px;
+    }
 
-        button:hover {
-            background-color: #693bb3;
-        }
-    </style>
+    .input-box input {
+      width: 100%;
+      height: 50px;
+      background: transparent;
+      border: none;
+      outline: none;
+      font-size: 1em;
+      color: #fff;
+      padding: 0 35px 0 5px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .input-box .icon {
+      position: absolute;
+      right: 8px;
+      top: 50%;
+      color: #fff;
+      transform: translateY(-50%);
+    }
+
+    .remember-forgot {
+      margin: -15px 0 15px;
+      font-size: 0.9em;
+      color: #fff;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .remember-forgot label input {
+      margin-right: 3px;
+    }
+
+    .remember-forgot a {
+      color: #fff;
+      text-decoration: none;
+    }
+
+    .remember-forgot a:hover {
+      text-decoration: underline;
+    }
+
+    button {
+      width: 100%;
+      height: 40px;
+      background-color: #fff;
+      border: none;
+      border-radius: 40px;
+      cursor: pointer;
+      font-size: 1em;
+      color: #000;
+      font-weight: 500;
+    }
+
+    .register-link {
+      font-size: 0.9em;
+      color: #fff;
+      text-align: center;
+      margin: 25px 0 10px;
+    }
+
+    .register-link p a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .register-link p a:hover {
+      text-decoration: underline;
+    }
+
+    @media (max-width: 500px) {
+      .login-box {
+        width: 100%;
+        height: 100vh;
+        border: none;
+        border-radius: 0;
+      }
+
+      .input-box {
+        width: 290px;
+      }
+    }
+  </style>
 </head>
 
 <body>
-    <div class="login-container">
-        <h2>Turbo Lamp Login</h2>
-        <form action="your-login-endpoint" method="post">
-            <label for="username">Username:</label>
-            <input type="text" id="username" name="username" required>
-
-            <label for="password">Password:</label>
-            <div class="password-container">
-                <input type="password" id="password" name="password" required>
-                <i class="password-icon fas fa-eye" id="show-password"></i>
-            </div>
-
-            <button type="submit">Login</button>
-        </form>
+  <div class="wrapper">
+    <div class="background"></div>
+    <div class="interactive-circle"></div>
+    <div class="login-box">
+      <form action="">
+        <h2>Login</h2>
+        <div class="input-box">
+          <span class="icon">
+            <ion-icon name="mail"></ion-icon>
+          </span>
+          <input type="email" required>
+          <label>Email</label>
+        </div>
+        <div class="input-box">
+          <span class="icon">
+            <ion-icon name="lock-closed"></ion-icon>
+          </span>
+          <input type="password" required>
+          <label>Password</label>
+        </div>
+        <div class="remember-forgot">
+          <label><input type="checkbox"> Remember me</label>
+          <a href="#">Forgot Password?</a>
+        </div>
+        <button type="submit">Login</button>
+        <div class="register-link">
+          <p>Don't have an account? <a href="#">Register</a></p>
+        </div>
+      </form>
     </div>
-    <script>
-        // JavaScript to toggle password visibility
-        const passwordInput = document.getElementById('password');
-        const showPasswordIcon = document.getElementById('show-password');
-
-        showPasswordIcon.addEventListener('click', function () {
-            const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
-            passwordInput.setAttribute('type', type);
-            showPasswordIcon.classList.toggle('fa-eye-slash');
-        });
-    </script>
+  </div>
+  <script src='https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js'></script>
+  <script src='https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js'></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const interactiveCircle = document.querySelector('.interactive-circle');
+  
+      document.addEventListener('mousemove', function (e) {
+        const x = e.clientX;
+        const y = e.clientY;
+  
+        const circleRadius = interactiveCircle.offsetWidth / 2.5;
+  
+        interactiveCircle.style.left = x - circleRadius + 'px';
+        interactiveCircle.style.top = y - circleRadius + 'px';
+      });
+    });
+  </script>
+  
 </body>
 
-</html>
 </html>
